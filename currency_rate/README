@@ -19,8 +19,8 @@ against EUR. The data is fetched from the the Frankfurter API.
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/yourusername/yourprojectname.git
-    cd yourprojectname
+    git clone https://github.com/tiagoc98/currency-rate.git
+    cd currency-rate/currency-rate
     ```
 #### Without Docker
 
