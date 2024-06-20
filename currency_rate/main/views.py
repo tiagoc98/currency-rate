@@ -53,6 +53,14 @@ def rate_range(request, start_date, end_date):
     if start_date > end_date:
         return JsonResponse({'error': 'Start date cannot be after the provided end date.'}, status=400)
 
+    delta = end_date - start_date
+    diference_days = delta.days + 1
+
+    if Rates.objects.filter(date__range=(start_date, end_date)).count() == diference_days:
+        average = Rates.objects.filter(date__range=(start_date, end_date)).aggregate(avg_rate=Avg('rate'))['avg_rate']
+
+        return JsonResponse({'Average': average})
+
     try:
         url = f"https://api.frankfurter.app/{str(start_date)}..{str(end_date)}?from=USD&to=EUR"
 
