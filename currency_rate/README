@@ -1,0 +1,89 @@
+# Currency rate challenge
+
+## Description
+
+This project exposes an endpoint displaying the currency rate of USD
+against EUR. The data is fetched from the the Frankfurter API.
+
+
+## Installation
+
+### Prerequisites
+
+- Python 3.9.1
+- (Optional) Virtualenv
+- (Optional) Docker
+
+### Setup
+
+1. Clone the repository:
+
+    ```sh
+    git clone https://github.com/yourusername/yourprojectname.git
+    cd yourprojectname
+    ```
+#### Without Docker
+
+2. Create and activate a virtual environment:
+
+    ```sh
+    python -m venv env
+    source env/bin/activate  # On Windows use `env\Scripts\activate`
+    ```
+
+3. Install the required dependencies:
+
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4. Set up the database:
+
+    ```sh
+    python manage.py migrate
+    ```
+
+#### With Docker
+2. Run the following command while in the directory of the Dockerfile to build the Docker image:
+
+    ```sh
+    docker build -t currency-rate .
+    ```
+
+3. Start the container after the build is complete:
+
+    ```sh
+    docker run -d -p 8000:8000 currency-rate
+    ```
+
+## Usage
+
+### Running the Development Server Without Docker
+
+1. Start the Django development server:
+
+    ```sh
+    python manage.py runserver
+    ```
+### Features
+1. Open your browser and go to `http://127.0.0.1:8000/rate/` to see the app running and the latest currency rate of USD against EUR.
+
+2. To search for the rate in a specific date go to http://127.0.0.1:8000/rate/<yyyy-mm-dd>/ to show the rate on that day
+
+3. To search for the rate in a specific date go to http://127.0.0.1:8000/rate/<yyyy-mm-dd>/<yyyy-mm-dd>/ to show the average during the dates
+
+4. Some dates are missing in the chronology of the data provided by Frankfurter API. To calculate the average as close as possible to
+the real values the previous available value is used for that rate. For example the previous available rate for the date of 2024-01-01 is the rate of 2023-12-29
+
+### Running Tests
+
+1. Run the test suite:
+
+    ```sh
+    python manage.py test
+    ```
+
+
+
+
+Project Link: [https://github.com/tiagoc98/currency-rate](https://github.com/tiagoc98/currency-rate)
